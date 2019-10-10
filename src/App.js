@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import axios from 'axios';
 
 import './App.css';
 
 import Home from './containers/Home';
 
 function App() {
-    return (
-      <div className="App">
-        <Router>
-          <Route exact path="/" component={Home} />
-        </Router>
-      </div>
+  return (
+    <div className="App">
+      <Router>
+        <Route exact path="./containers/Home" component={Home} />
+      </Router>
+    </div>
   );
 }
+
 export default App;

@@ -6,24 +6,24 @@ import PageWrapper from '../components/PageWrapper';
 const apiKey = '14e9d5aa4b9258acb376e4ca1ed41684';
 
 export default function Home(props) {
-  // const [error, isError] = useState(false);
-  // const [errorMessage, setErrorMessage] = useState('');
-  // const [success, isSuccess] = useState(true);
+  const [error, isError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [success, isSuccess] = useState(true);
   const [city, setCity] = useState('');
   const [weather, setWeather] = useState({});
   const [weatherType, setWeatherType] = useState('');
   const [cloudy, setCloudy] = useState(0);
 
-  // function apiCallback(response) {
-  //   console.log('response', response);
-  //   if(response.status !== 200) {
-  //     isError(true);
-  //     setErrorMessage(`${response.status}: ${'Error'}`);
-  //   } else {
-  //     isSuccess(true);
-  //   }
-  //   setWeather(response.data);
-  // }
+  function apiCallback(response) {
+    console.log('response', response);
+    if(response.status !== 200) {
+      isError(true);
+      setErrorMessage(`${response.status}: ${'Error'}`);
+    } else {
+      isSuccess(true);
+    }
+    setWeather(response.data);
+  }
 
   useEffect(() => {
     let getWeatherType = weather.weather ? weather.weather[0].main : '';
