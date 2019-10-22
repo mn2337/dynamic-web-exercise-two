@@ -11,9 +11,9 @@ export default function PageWrapper({cloudy, children}) {
 			minWidth: '100vw',
 			backgroundColor: `rgba((0,0,0,${wrapperOpacity}))`
 		}}>
-		<div className="PageWrapper">
-			{children}
-		</div>
+			<div className="PageWrapper">
+				{children}
+			</div>
 		</div>
 	)
 }
