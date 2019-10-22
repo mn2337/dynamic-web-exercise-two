@@ -30,7 +30,7 @@ export default function Home(props) {
     let getCloudy = weather.clouds ? weather.clouds.all : 0;
     setWeatherType(getWeatherType)
     setCloudy(getCloudy)
-  }, [weather])
+  }, [])
 
   useEffect(() => {
   	const urlParams = new URLSearchParams(props.location.search)
@@ -57,49 +57,50 @@ export default function Home(props) {
     }
  }, []); //closes initial function, empty array 
 
-    return (
-      <PageWrapper cloudy={cloudy}>
-            <div className="WeatherNav">
-              <a 
-                className={`WeatherNav__Item ${city === 'Morocco' ? 'WeatherNav__Item--active' : ''}`}
-                href="/?city=Morocco"
-              >
-                Morocco
-              </a>
-              <a 
-                className={`WeatherNav__Item ${city === 'Busan' ? 'WeatherNav__Item--active' : ''}`}
-                href="/?city=Busan"
-              >
-                Busan
-              </a>
-              <a 
-                className={`WeatherNav__Item ${city === 'Toronto' ? 'WeatherNav__Item--active' : ''}`}
-                href="/?city=Toronto"
-              >
-                Toronto
-              </a>
-              <a 
-                className={`WeatherNav__Item ${city === 'Reykjavik' ? 'WeatherNav__Item--active' : ''}`}
-                href="/?city=Reykjavik"
-              >
-                Reykjavik
-              </a>
-           </div>
-          
-          
-          <div>
-            <h3>Weather in: <span>{city}</span></h3>
+return (
+  <PageWrapper cloudy={cloudy}>
+  
+    <div className="WeatherNav">
+      <a 
+        className={`WeatherNav__Item ${city === 'Morocco' ? 'WeatherNav__Item--active' : ''}`}
+        href="/?city=Morocco"
+      >
+       Morocco
+     </a>
+      <a 
+        className={`WeatherNav__Item ${city === 'Busan' ? 'WeatherNav__Item--active' : ''}`}
+        href="/?city=Busan"
+      >
+        Busan
+      </a>
+      <a 
+        className={`WeatherNav__Item ${city === 'Toronto' ? 'WeatherNav__Item--active' : ''}`}
+        href="/?city=Toronto"
+      >
+        Toronto
+      </a>
+      <a 
+        className={`WeatherNav__Item ${city === 'Reykjavik' ? 'WeatherNav__Item--active' : ''}`}
+        href="/?city=Reykjavik"
+      >
+        Reykjavik
+      </a>
+    </div>
 
 
-            <WeatherIcon weatherValue={weatherType}/>
-            <p>{weatherType}</p>
-            <p>Current Temp: {weather.data ? weather.data.main.temp: ''}</p>
-            <p>Humidity: {weather.data ? weather.data.main.humidity: ''}% </p>
-            <p>High Temperature: {weather.data ? weather.data.main.temp_max: ''}</p>
-            <p>Low Temperature: {weather.data ? weather.data.main.temp_min: ''}</p>
-            <p>Cloudiness: {weather.clouds ? weather.data.clouds.all: ''}</p>
-            <p>Wind: {weather.wind ? weather.wind.speed: ''}km/H coming at {weather.wind ? weather.wind.degrees: ''}}</p>
-          </div>
-      </PageWrapper>
-    )
+    <div>
+      <h3>Weather in: <span>{city}</span></h3>
+
+
+      <WeatherIcon weatherValue={weatherType}/>
+      <p>{weatherType}</p>
+      <p>Current Temp: {weather.data ? weather.data.main.temp: ''}</p>
+      <p>Humidity: {weather.data ? weather.data.main.humidity: ''}% </p>
+      <p>High Temperature: {weather.data ? weather.data.main.temp_max: ''}</p>
+      <p>Low Temperature: {weather.data ? weather.data.main.temp_min: ''}</p>
+      <p>Cloudiness: {weather.clouds ? weather.data.clouds.all: ''}</p>
+      <p>Wind: {weather.wind ? weather.wind.speed: ''}km/H coming at {weather.wind ? weather.wind.degrees: ''}}</p>
+    </div>
+  </PageWrapper>
+  )
 }
