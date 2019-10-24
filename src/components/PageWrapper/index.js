@@ -9,7 +9,7 @@ export default function PageWrapper({cloudy, children}) {
 			width: '100%',
 			minHeight: '100vh',
 			minWidth: '100vw',
-			backgroundColor: `rgba((0,0,0,${wrapperOpacity}))`
+			backgroundColor: `rgba((0,0,255,${wrapperOpacity}))`
 		}}>
 			<div className="PageWrapper">
 				{children}

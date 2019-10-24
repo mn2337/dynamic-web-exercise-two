@@ -26,15 +26,18 @@ export default function Home(props) {
   }
 
   useEffect(() => {
-    let getWeatherType = weather.weather ? weather.weather[0].main : '';
-    let getCloudy = weather.clouds ? weather.clouds.all : 0;
-    setWeatherType(getWeatherType)
-    setCloudy(getCloudy)
+    let getWeatherType = weather.data ? weather.data.weather[0].main : '';
+    let getCloudy = weather.data ? weather.data.clouds.all : '';
+    setWeatherType(getWeatherType);
+    setCloudy(getCloudy);
   }, [])
 
   useEffect(() => {
   	const urlParams = new URLSearchParams(props.location.search)
-  	const cityParam = urlParams.get('city') ? urlParams.get('city') : 'Okinawa';
+  	const cityParam = urlParams.get('city') ? urlParams.get('city') : 'Morocco';
+
+    queryWeatherAPI(`${cityParam}`);
+    console.log('weather test', queryWeatherAPI('Morocco'));
 
   	setCity(cityParam);
 
@@ -43,7 +46,7 @@ export default function Home(props) {
     function queryWeatherAPI(cityParam) {
       axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityParam}&APPID=${apiKey}`)
       .then(function(response) {
-        console.log('response', response);
+        console.log('response', response)
         setWeather(response);
         return response;
       })
@@ -52,33 +55,31 @@ export default function Home(props) {
         return error;
       });
 
-    queryWeatherAPI('Okinawa');
-    console.log('weather test', queryWeatherAPI('Okinawa'));
     }
- }, []); //closes initial function, empty array 
+ }, []); 
 
 return (
   <PageWrapper cloudy={cloudy}>
-  
+    <br></br>
     <div className="WeatherNav">
       <a 
         className={`WeatherNav__Item ${city === 'Morocco' ? 'WeatherNav__Item--active' : ''}`}
         href="/?city=Morocco"
       >
        Morocco
-     </a>
+     </a>&nbsp;&nbsp;&nbsp;
       <a 
         className={`WeatherNav__Item ${city === 'Busan' ? 'WeatherNav__Item--active' : ''}`}
         href="/?city=Busan"
       >
         Busan
-      </a>
+      </a>&nbsp;&nbsp;&nbsp;
       <a 
         className={`WeatherNav__Item ${city === 'Toronto' ? 'WeatherNav__Item--active' : ''}`}
-        href="/?city=Toronto"
+        href="/?city=Toronto" 
       >
         Toronto
-      </a>
+      </a>&nbsp;&nbsp;&nbsp;
       <a 
         className={`WeatherNav__Item ${city === 'Reykjavik' ? 'WeatherNav__Item--active' : ''}`}
         href="/?city=Reykjavik"
@@ -92,14 +93,17 @@ return (
       <h3>Weather in: <span>{city}</span></h3>
 
 
-      <WeatherIcon weatherValue={weatherType}/>
+      <WeatherIcon weatherValue={weatherType}/> 
       <p>{weatherType}</p>
-      <p>Current Temp: {weather.data ? weather.data.main.temp: ''}</p>
+      <br></br>
+      <p>{weather.data ? weather.data.weather[0].main : ''}</p>
+      <br></br>
+      <p>Current Temp: {weather.data ? weather.data.main.temp: ''} - 273.15 C</p>
       <p>Humidity: {weather.data ? weather.data.main.humidity: ''}% </p>
-      <p>High Temperature: {weather.data ? weather.data.main.temp_max: ''}</p>
-      <p>Low Temperature: {weather.data ? weather.data.main.temp_min: ''}</p>
-      <p>Cloudiness: {weather.clouds ? weather.data.clouds.all: ''}</p>
-      <p>Wind: {weather.wind ? weather.wind.speed: ''}km/H coming at {weather.wind ? weather.wind.degrees: ''}}</p>
+      <p>High Temperature: {weather.data ? weather.data.main.temp_max: ''} - 273.15 C</p>
+      <p>Low Temperature: {weather.data ? weather.data.main.temp_min: ''} - 273.15 C</p>
+      <p>Cloudiness: {weather.data ? weather.data.clouds.all: ''}%</p>
+      <p>Wind: {weather.data ? weather.data.wind.speed: ''}km/H coming at {weather.data ? weather.data.wind.deg: ''} degrees</p>
     </div>
   </PageWrapper>
   )

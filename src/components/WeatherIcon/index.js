@@ -1,26 +1,34 @@
-// import React from 'react';
-// import { FontAwesomeIcon } from '@fontawesome/react-fontawesome';
-// import { faCloudRain, faCloud, faSun, faWind, faPooStorm } from '@fontawesome/free-solid-svg-icons';
+import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCloud, faSun, faCloudRain } from '@fortawesome/free-solid-svg-icons';
 
-// // make the imports camelCase
+// make the imports camelCase
 
-// export default function WeatherIcon({weatherType}) {
-// 	switch(weatherType) {
-// 		case 'Rain':
-// 			return (
-// 				<FontAwesomeIcon 
-// 					icon={faCloudRain}
-// 				/>
-// 			);
-// 		case 'Cloudy':
-// 			return (
-// 				<FontAwesomeIcon 
-// 					icon={faCloudRain}
-// 					className="WeatherIcon"
-// 					size="2x"
-// 				/>
-// 			);
-// 		default:
-// 			return (<div>{weatherValue}</div>);
-// 	}
-// } {error && <div className="errorMessage">{errorMessage}</div>}
+export default function WeatherIcon({weatherValue}) {
+	switch(weatherValue) {
+		case 'Rain':
+			return (
+				<FontAwesomeIcon 
+					icon={faCloudRain}
+				/>
+			);
+		case 'Cloudy':
+			return (
+				<FontAwesomeIcon 
+					icon={faCloud}
+					className="WeatherIcon"
+					size="2x"
+				/>
+			);
+		case 'Sun':
+			return (
+				<FontAwesomeIcon
+					icon={faSun}
+					className="WeatherIcon"
+					size="2x"
+				/>
+			);
+		default:
+			return (<div>{weatherValue}</div>);
+	}
+} 
